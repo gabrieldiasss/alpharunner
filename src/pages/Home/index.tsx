@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 
 import { api } from '../../services/api'
 import { Container } from './styles'
+import { formatPrice } from '../../util/format'
 
 interface Products {
     id: number;
@@ -10,26 +11,34 @@ interface Products {
     image: string; 
 }
 
+interface ProductFormatted extends Products {
+    priceFormatted: string;
+}
+
 const Home = (): JSX.Element => {
 
-    const [products, setProducts] = useState<Products[]>([])
-    const [counter, setCounter] = useState(0)
+    const [products, setProducts] = useState<ProductFormatted[]>([])
 
     useEffect(() => {
 
         async function LoadProducts() {
-            const response = await api.get('products')
+            const response = await api.get<Products[]>('products')
 
-            setProducts(response.data)
+            const data: ProductFormatted[] = response.data.map(product => ({
+                ...product,
+                priceFormatted: formatPrice(product.price)
+            }))
+
+            setProducts(data)
         }
 
         LoadProducts()
 
     }, [])
 
-    /* function handleAddProduct(id: number) {
+    function handleAddProduct(id: number) {
         
-    } */
+    }
 
     return (
         <Container>
@@ -37,10 +46,10 @@ const Home = (): JSX.Element => {
                 <li key={product.id}>
                     <img src={product.image} alt="" />
                     <h2>{product.title}</h2>
-                    <h3>{product.price}</h3>
+                    <h3>{product.priceFormatted}</h3>
 
                     <button onClick={() => handleAddProduct(product.id)} >
-                        {counter} Adicionar ao carrinnho
+                        Adicionar ao carrinnho
                     </button>
                 </li>
             ))}
