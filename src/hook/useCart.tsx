@@ -74,16 +74,27 @@ const addProduct = async (productId: number) => {
 
 }
 
-const removeProduct = () => {
+const removeProduct = (productId: number) => {
 
     try {
 
+        const updatedCart = [...cart]
+
+        const productExists = updatedCart.findIndex(product => product.id === productId)
+
+        if(productExists >= 0) {
+            updatedCart.splice(productExists, 1)
+            setCart(updatedCart)
+            localStorage.setItem('@RocketShoes:cart', JSON.stringify(updatedCart))
+        } else {
+            throw Error()
+            
+        }
     } catch {
-        
+        toast.error('Erro na remoção do produto');
     }
 
 }
-
 
     return (
         <CartContext.Provider value={{ cart, addProduct, removeProduct }} >
