@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useCart } from '../../hook/useCart'
-import { Container } from './styles'
+
+import { Container, Content, Logo, NavMenu } from './styles'
 
 const Header = (): JSX.Element => {
 
@@ -10,15 +11,32 @@ const Header = (): JSX.Element => {
 
     return (
         <Container>
-            <Link to="/" >
-                <h1>Aqui é o topo do site</h1>
-            </Link>
+            <Content>
 
-            <Link to="/cart" >
-                <button>Ir para o carrinho</button>
-                {cartProducts} {cartProducts === 1 ? 'Item' : 'Itens' }
-            </Link>
-        </Container>
+                <Link to="/" >
+                    <Logo>ALPHARUNNER</Logo>
+                </Link>
+
+
+                <NavMenu>
+                    <ul>
+                        <li>Nova coleção</li>
+                        <li>Destaques</li>
+
+                        <Link to="/cart">
+                            <button>
+                                <div>
+                                    Meu carrinho
+                                </div>
+                                
+
+                                <span>{cartProducts} {cartProducts === 1 ? 'Item' : 'Itens'}</span>
+                            </button>
+                        </Link>
+                    </ul>
+                </NavMenu>
+            </Content>
+        </Container >
     )
 }
 

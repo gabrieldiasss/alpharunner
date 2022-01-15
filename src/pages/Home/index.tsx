@@ -4,7 +4,6 @@ import { api } from '../../services/api'
 import { Container } from './styles'
 import { formatPrice } from '../../util/format'
 import { useCart } from "../../hook/useCart"
-import { toast } from "react-toastify"
 
 interface Products {
     id: number;
@@ -61,12 +60,13 @@ const Home = (): JSX.Element => {
     return (
         <Container>
 
+            
+            
             {products.map(product => (
                 <li key={product.id}>
                     <img src={product.image} alt="" />
                     <h2>{product.title}</h2>
                     <h3>{product.priceFormatted}</h3>
-                    {product.id}
 
                     <button onClick={() => handleAddProduct(product.id)} >
                         {cartItemsAmount[product.id] || 0} Adicionar ao carrinnho
