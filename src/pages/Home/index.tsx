@@ -5,11 +5,13 @@ import { Container } from './styles'
 import { formatPrice } from '../../util/format'
 import { useCart } from "../../hook/useCart"
 
+import NewCollection from '../../components/NewCollection'
+
 interface Products {
     id: number;
     title: string;
     price: number;
-    image: string; 
+    image: string;
 }
 
 interface ProductFormatted extends Products {
@@ -55,29 +57,34 @@ const Home = (): JSX.Element => {
 
     function handleAddProduct(productId: number) {
         addProduct(productId)
-	}
+    }
 
     return (
-        <Container>
 
-            
-            
-            {products.map(product => (
-                <li key={product.id}>
-                    <img src={product.image} alt="" />
-                    <h2>{product.title}</h2>
-                    <h3>{product.priceFormatted}</h3>
+        <>
 
-                    <button onClick={() => handleAddProduct(product.id)} >
-                        {cartItemsAmount[product.id] || 0} Adicionar ao carrinnho
-                    </button>
+            <NewCollection />
 
-                </li>
+            <Container>
 
-            ))}
+                {products.map(product => (
+                    <li key={product.id}>
+                        <img src={product.image} alt="" />
+                        <h2>{product.title}</h2>
+                        <h3>{product.priceFormatted}</h3>
+
+                        <button onClick={() => handleAddProduct(product.id)} >
+                            {cartItemsAmount[product.id] || 0} Adicionar ao carrinnho
+                        </button>
+
+                    </li>
+
+                ))}
 
 
-        </Container>
+            </Container>
+        </>
+
     )
 }
 

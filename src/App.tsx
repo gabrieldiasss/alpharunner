@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { CartProvider } from './hook/useCart';
 import { GlobalStyle } from './styles/global';
 
+
+
 function App() {
 
 	return (
@@ -15,6 +17,7 @@ function App() {
 			<CartProvider>
 				<GlobalStyle />
 				<Header />
+				
 				<Routes />
 				<ToastContainer autoClose={3000} />
 			</CartProvider>

@@ -10,8 +10,7 @@ export const GlobalStyle = createGlobalStyle`
 
     :root {
         --background: #fff;
-        --gray: #626062;
-        --gray-card: #F4F4F4;
+        --gray: #F4F4F4;
         --text-title: #000000;
     }
 
@@ -46,10 +45,16 @@ export const GlobalStyle = createGlobalStyle`
 
     button {
         cursor: pointer;
+        background: 0;
+        border: 0;
     }
 
     h1, strong {
         font-weight: 700;
+    }
+
+    h2 {
+        font-weight: 600;
     }
 
     li {
