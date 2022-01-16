@@ -1,4 +1,5 @@
 
+import HeaderCart from "../../components/HeaderCart"
 import { useCart } from "../../hook/useCart"
 import { Product } from "../../types"
 import { formatPrice } from "../../util/format"
@@ -34,27 +35,33 @@ const Cart = (): JSX.Element => {
     }
 
     return (
-        <Container>
-            {cartFormatted.map(product => (
-                <li key={product.id} >
-                    <img src={product.image} alt={product.title} />
-                    <h2>{product.title}</h2>
-                    <h3>{product.priceFormatted}</h3>
+        <>
 
-                    <h1 onClick={() => handleDecrement(product)} >Decrementar</h1>
-                    <h2>{product.amount}</h2>
-                    <h1 onClick={() => handleIncrement(product)} >incrementar</h1>
+            <HeaderCart />
 
-                    <h1>{product.subtotal}</h1>
+            <Container>
+                {cartFormatted.map(product => (
+                    <li key={product.id} >
+                        <img src={product.image} alt={product.title} />
+                        <h2>{product.title}</h2>
+                        <h3>{product.priceFormatted}</h3>
 
-                    
+                        <h1 onClick={() => handleDecrement(product)} >Decrementar</h1>
+                        <h2>{product.amount}</h2>
+                        <h1 onClick={() => handleIncrement(product)} >incrementar</h1>
 
-                    <h2 style={{ "color": "red" }} onClick={() => handleRemoveProduct(product.id)} >Remover</h2>
-                </li>
-            ))}
+                        <h1>{product.subtotal}</h1>
 
-            <h1 style={{ "color": "green" }} >{total}</h1>
-        </Container>
+
+
+                        <h2 style={{ "color": "red" }} onClick={() => handleRemoveProduct(product.id)} >Remover</h2>
+                    </li>
+                ))}
+
+                <h1 style={{ "color": "green" }} >{total}</h1>
+            </Container>
+        </>
+
     )
 }
 

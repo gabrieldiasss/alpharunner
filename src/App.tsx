@@ -16,7 +16,6 @@ function App() {
 		<BrowserRouter>
 			<CartProvider>
 				<GlobalStyle />
-				<Header />
 				
 				<Routes />
 				<ToastContainer autoClose={3000} />

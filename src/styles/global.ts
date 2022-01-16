@@ -42,7 +42,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body, input, textarea, button {
         font-family: Poppins;
-        font-weight: 600;
+        font-weight: 500;
     }
 
     button {

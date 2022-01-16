@@ -8,7 +8,8 @@ import { useCart } from "../../hook/useCart"
 import NewCollection from '../../components/NewCollection'
 
 import { Arrow, CartIcon } from './styles'
-import { Number } from "styled-icons/octicons"
+import Header from "../../components/Header"
+
 
 interface Products {
     id: number;
@@ -25,9 +26,6 @@ interface CartItemsAmount {
     [key: number]: number;
 }
 
-interface CartReadMore {
-    [key: number]: boolean;
-}
 
 const Home = (): JSX.Element => {
 
@@ -68,11 +66,7 @@ const Home = (): JSX.Element => {
 
     function handleReadMore(id: number) {
 
-        setReadMore({
-            [id]: !readMore
-        })
-
-        setReadMore({...readMore, [id]: !readMore[id]})
+        setReadMore({ ...readMore, [id]: !readMore[id] })
 
         console.log({
             [id]: !readMore[id]
@@ -84,6 +78,8 @@ const Home = (): JSX.Element => {
 
         <>
 
+            <Header />
+
             <NewCollection />
 
             <Container>
@@ -94,7 +90,7 @@ const Home = (): JSX.Element => {
                         <h2>
                             {readMore[product.id] ? product.title : product.title.slice(0, 40)}
 
-                            {!readMore[product.id] && product.title.length > 50  &&  (
+                            {!readMore[product.id] && product.title.length > 50 && (
                                 <span onClick={() => handleReadMore(product.id)} >
                                     Ler mais
                                 </span>

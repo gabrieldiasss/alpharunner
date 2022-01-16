@@ -30,7 +30,8 @@ export const Card = styled.li`
         margin-top: 1.2rem;
 
         span {
-            font-size: 0.8rem;
+            font-size: 1rem;
+            font-weight: 500;
             color: #626062;
             
             &:hover {
@@ -61,18 +62,17 @@ export const Card = styled.li`
         display: flex;
         align-items: flex-start;
         gap: 0.8rem;
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         color: var(--gray-icon);
         font-weight: 400;
     }
 
-    
 `
 
 export const Arrow = styled(ArrowRightShort)`
     width: 56px;
 `
 export const CartIcon = styled(Cart)`
-    width: 36px;
+    width: 28px;
     color: var(--gray-icon);
 `
