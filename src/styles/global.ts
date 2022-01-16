@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     :root {
         --background: #fff;
         --gray: #F4F4F4;
+        --gray-icon: #c4c4c4;
         --text-title: #000000;
     }
 
@@ -41,6 +42,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body, input, textarea, button {
         font-family: Poppins;
+        font-weight: 600;
     }
 
     button {
@@ -53,7 +55,7 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 700;
     }
 
-    h2 {
+    h2, h3 {
         font-weight: 600;
     }
 

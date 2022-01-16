@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 
 import { api } from '../../services/api'
-import { Container } from './styles'
+import { Container, Card } from './styles'
 import { formatPrice } from '../../util/format'
 import { useCart } from "../../hook/useCart"
 
 import NewCollection from '../../components/NewCollection'
+
+import { Arrow, CartIcon } from './styles'
+import { Number } from "styled-icons/octicons"
 
 interface Products {
     id: number;
@@ -22,9 +25,15 @@ interface CartItemsAmount {
     [key: number]: number;
 }
 
+interface CartReadMore {
+    [key: number]: boolean;
+}
+
 const Home = (): JSX.Element => {
 
     const [products, setProducts] = useState<ProductFormatted[]>([])
+
+    const [readMore, setReadMore] = useState<Record<number, boolean>>({})
 
     const { addProduct, cart } = useCart()
 
@@ -32,7 +41,6 @@ const Home = (): JSX.Element => {
 
         sumAmount[product.id] = product.amount
 
-        console.log(sumAmount)
         return sumAmount
 
     }, {} as CartItemsAmount)
@@ -52,11 +60,24 @@ const Home = (): JSX.Element => {
 
         loadProducts()
 
-
     }, [])
 
     function handleAddProduct(productId: number) {
         addProduct(productId)
+    }
+
+    function handleReadMore(id: number) {
+
+        setReadMore({
+            [id]: !readMore
+        })
+
+        setReadMore({...readMore, [id]: !readMore[id]})
+
+        console.log({
+            [id]: !readMore[id]
+        })
+
     }
 
     return (
@@ -68,19 +89,38 @@ const Home = (): JSX.Element => {
             <Container>
 
                 {products.map(product => (
-                    <li key={product.id}>
+                    <Card key={product.id}>
                         <img src={product.image} alt="" />
-                        <h2>{product.title}</h2>
+                        <h2>
+                            {readMore[product.id] ? product.title : product.title.slice(0, 40)}
+
+                            {!readMore[product.id] && product.title.length > 50  &&  (
+                                <span onClick={() => handleReadMore(product.id)} >
+                                    Ler mais
+                                </span>
+                            )}
+
+                            {readMore[product.id] && product.title.length > 50 && (
+                                <span onClick={() => handleReadMore(product.id)} >
+                                    Ler menos
+                                </span>
+                            )}
+
+                        </h2>
                         <h3>{product.priceFormatted}</h3>
 
-                        <button onClick={() => handleAddProduct(product.id)} >
-                            {cartItemsAmount[product.id] || 0} Adicionar ao carrinnho
+                        <button type="button" onClick={() => handleAddProduct(product.id)} >
+                            <span>
+                                Adicionar ao carrinnho
+                            </span>
+
+                            <Arrow />
                         </button>
 
-                    </li>
+                        <span><CartIcon /> {cartItemsAmount[product.id] || 0}</span>
+                    </Card>
 
                 ))}
-
 
             </Container>
         </>
