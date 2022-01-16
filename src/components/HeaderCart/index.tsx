@@ -3,7 +3,6 @@ import { useCart } from '../../hook/useCart'
 
 import { Container, Content, NavMenu, Arrow, CartIcon } from './styles'
 
-
 const HeaderCart = (): JSX.Element => {
 
     const { cart } = useCart()

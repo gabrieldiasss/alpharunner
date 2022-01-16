@@ -4,7 +4,7 @@ import { ArrowLeftShort } from '@styled-icons/bootstrap/ArrowLeftShort'
 import { Cart } from '@styled-icons/bootstrap/Cart'
 
 export const Container = styled.header`
-    background: var(--gray);
+    
 `
 export const Content = styled.div`
     display: flex;
@@ -16,6 +16,10 @@ export const Content = styled.div`
     margin: 0 auto;
 
     padding-top: 2.4rem;
+
+    h2:hover {
+        text-decoration: underline;
+    }
 `
 
 export const NavMenu = styled.div`

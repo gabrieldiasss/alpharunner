@@ -9,7 +9,7 @@ export const Container = styled.main`
     grid-gap: 3.2rem;
 
     max-width: 1200px;
-    margin: 3.2rem auto;
+    margin: 4rem auto;
 `
 
 export const Card = styled.li`
@@ -55,6 +55,10 @@ export const Card = styled.li`
         span {
             display: flex;
             align-items: center;
+        }
+
+        &:hover {
+            text-decoration: underline;
         }
     }
 

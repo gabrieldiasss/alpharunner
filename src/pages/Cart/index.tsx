@@ -4,7 +4,7 @@ import { useCart } from "../../hook/useCart"
 import { Product } from "../../types"
 import { formatPrice } from "../../util/format"
 
-import { Container } from './styles'
+import { CartPage, Container, ProductTable, DecrementIcon, DeleteIcon, DeleteBackIcon, Total } from './styles'
 
 const Cart = (): JSX.Element => {
 
@@ -35,32 +35,73 @@ const Cart = (): JSX.Element => {
     }
 
     return (
-        <>
+        <CartPage>
 
             <HeaderCart />
 
             <Container>
-                {cartFormatted.map(product => (
-                    <li key={product.id} >
-                        <img src={product.image} alt={product.title} />
-                        <h2>{product.title}</h2>
-                        <h3>{product.priceFormatted}</h3>
 
-                        <h1 onClick={() => handleDecrement(product)} >Decrementar</h1>
-                        <h2>{product.amount}</h2>
-                        <h1 onClick={() => handleIncrement(product)} >incrementar</h1>
+                <ProductTable>
 
-                        <h1>{product.subtotal}</h1>
+                    <thead>
+                        <tr>
+                            <th />
+                            <th>PRODUTO</th>
+                            <th>QTD</th>
+                            <th>SUBTOTAL</th>
+                            <th />
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {cartFormatted.map(product => (
+                            <tr key={product.id} >
+                                <td><img src={product.image} alt={product.title} /></td>
+                                <td>
+                                    <strong>{product.title}</strong>
+                                    <span>{product.priceFormatted}</span>
 
 
+                                </td>
 
-                        <h2 style={{ "color": "red" }} onClick={() => handleRemoveProduct(product.id)} >Remover</h2>
-                    </li>
-                ))}
+                                <td>
+                                    <div>
+                                        <button type="button" disabled={product.amount <= 1} onClick={() => handleDecrement(product)} ><DeleteBackIcon /> </button>
 
-                <h1 style={{ "color": "green" }} >{total}</h1>
+                                        <input
+                                            value={product.amount}
+                                        />
+
+                                        <button type="button" onClick={() => handleIncrement(product)} ><DecrementIcon /></button>
+
+                                    </div>
+                                </td>
+
+
+                                <td>
+                                    <strong>{product.subtotal}</strong>
+                                </td>
+
+                                <td>
+                                    <button type="button" onClick={() => handleRemoveProduct(product.id)}> <DeleteIcon /></button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+
+                </ProductTable>
+
+                <footer>
+                    <button type="submit" >Finalizar pedido</button>
+
+                    <Total>
+                        <span>TOTAL</span>
+                        <strong>{total}</strong>
+                    </Total>
+                </footer>
+
             </Container>
-        </>
+        </CartPage>
 
     )
 }
