@@ -29,5 +29,5 @@ Funcionalidades:
 <!-- GETTING STARTED -->
 ## Rode o projeto na sua máquina
 
-Para isso é só clonar o repositório e depois dar um *yarn add* ou *npm install* para instalar todas as dependências e depois dar *yarn server* para 
+Para isso é só clonar o repositório e depois dar um *yarn add* ou *npm install* para instalar todas as dependências e depois dar *yarn server* para instalar as dependências.
 
